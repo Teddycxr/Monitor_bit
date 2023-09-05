@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="60">
+    <title>{{symbol}}账户监控</title>
+</head>
+
+
+<style>
+#login_click{ margin-top:32px; height:40px;}
+#login_click a 
+{
+    
+ 
+    text-decoration:none;
+    background:#2f435e;
+    color:#f82a2a;
+    
+    padding: 10px 30px 10px 30px;
+    font-size:16px;
+    font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
+    font-weight:bold;
+    border-radius:3px;
+    
+    -webkit-transition:all linear 0.30s;
+    -moz-transition:all linear 0.30s;
+    transition:all linear 0.30s;
+    
+    }
+   #login_click a:hover { background:#385f9e; }
+</style>
+
+<style>
+    #login_click1{ margin-top:32px; height:40px;}
+    #login_click1 a 
+    {
+        
+     
+        text-decoration:none;
+        background:#2f435e;
+        color:#1ceb6b;
+        
+        padding: 10px 30px 10px 30px;
+        font-size:16px;
+        font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
+        font-weight:bold;
+        border-radius:3px;
+        
+        -webkit-transition:all linear 0.30s;
+        -moz-transition:all linear 0.30s;
+        transition:all linear 0.30s;
+        
+        }
+       #login_click1 a:hover { background:#385f9e; }
+    </style>
+
+<!-- <body> -->
+
+{% for s in jump %}
+    {% if s.1 >= 0 %}
+        <div id="login_click" style="display:inline-block">
+        {{s.0|safe}}
+        </div>
+    {% else %}
+        <div id="login_click1" style="display:inline-block">
+        {{s.0|safe}}
+        </div>
+    {% endif %}
+{% endfor %}
+</br>
+<!-- {% for s in jump2 %}
+<div id="login_click" style="display:inline-block">
+{{s|safe}}
+</div>
+{% endfor %}
+</br> -->
+
+<table border='1' cellpadding="0" cellspacing="0" align="center" style="background-color:#F0F0F0; white-space: pre-line;">
+    <thead>
+    <caption>
+    <font size="5"><b>{{symbol}}&nbsp;账户监控</b></font>
+    <font size="2">更新时间 {{info.0}}</br></font>
+    <font size='3'>wbf指数价格:&nbsp;{{info.2}}&nbsp;&nbsp;wbf现价:&nbsp;{{info.3}}</font>
+    <font size="3" style="display:inline">指数成分:&nbsp;{% for key,value in info.4.items %}{{key}}:&nbsp;{{value.0}}&nbsp;({{value.1}}%)&nbsp;&nbsp;{% endfor %}</br></font>
+    </caption>
+
+    <tr align="center">
+        <th width="60" height="33">账户名</th>
+        <th width="60">uid</th>
+        <th width="60">状态</th>
+        <th width="120">总权益({{info.5}})</th>
+        <th width="110">今日盈亏({{info.5}})</th>
+        <th width="110">累计盈亏({{info.5}})</th>
+        <th width="110">名义保证金率%</th>
+        <th width="110">今日成交量({{info.1}})</th>
+        <th width="90">订单积压</th>
+        <th width="90">敞口({{info.1}})</th>
+        <th width="150">仓位</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+        {% for d in content %}
+            <tr align="center">
+                <td height="60">{{d.0}}</td>
+                <td height="60">{{d.1}}</td>
+                <td height="60">{{d.2}}</td>
+                <td height="60">{{d.3}}</td>
+                <td height="60">{{d.4}}</td>
+                <td height="60">{{d.5}}</td>
+                <td height="60">{{d.6}}</td>
+                <td height="60">{{d.10|safe}}</td>
+                <td height="60">{{d.7}}</td>
+                <td height="60">{{d.9}}</td>
+                <td height="60">{{d.8}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
